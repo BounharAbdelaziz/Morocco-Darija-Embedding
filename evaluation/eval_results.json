@@ -1,0 +1,36 @@
+{
+    "metrics": [
+        {
+            "model": "BounharAbdelaziz/Morocco-Darija-Sentence-Embedding",
+            "spearman_correlation": "0.5596",
+            "pearson_correlation": "0.5811",
+            "mse": "0.0703",
+            "avg_processing_time": "2.99",
+            "total_pairs": 725
+        },
+        {
+            "model": "BounharAbdelaziz/Morocco-Darija-Static-Sentence-Embedding",
+            "spearman_correlation": "0.4671",
+            "pearson_correlation": "0.4931",
+            "mse": "0.1494",
+            "avg_processing_time": "0.12",
+            "total_pairs": 725
+        },
+        {
+            "model": "intfloat/multilingual-e5-large",
+            "spearman_correlation": "0.4573",
+            "pearson_correlation": "0.4998",
+            "mse": "0.1284",
+            "avg_processing_time": "2.63",
+            "total_pairs": 725
+        },
+        {
+            "model": "BAAI/bge-m3",
+            "spearman_correlation": "0.4545",
+            "pearson_correlation": "0.4777",
+            "mse": "0.0789",
+            "avg_processing_time": "3.35",
+            "total_pairs": 725
+        }
+    ]
+}
