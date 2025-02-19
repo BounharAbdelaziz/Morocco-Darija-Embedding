@@ -1,0 +1,43 @@
+# Project name and version for loggings and savings
+project_name: sentence-transformers-darija
+version: v0.1
+
+# Which pretrained models to finetune
+# BASE_MODEL: google-bert/bert-base-multilingual-uncased # sentence-transformers/static-similarity-mrl-multilingual-v1
+# BASE_MODEL: inceptionai/jais-13b
+# BASE_MODEL: google/gemma-7b
+# BASE_MODEL: deepseek-ai/DeepSeek-R1
+# BASE_MODEL: Qwen/Qwen2.5-72B
+# BASE_MODEL: FacebookAI/xlm-roberta-base
+BASE_MODEL: BounharAbdelaziz/XLM-RoBERTa-Morocco
+# BASE_MODEL: atlasia/xlm-roberta-large-ft-alatlas
+
+# Dataset to use
+DATASET_PATH: atlasia/Sentence-Transformers-Triplet-Morocco-Darija
+
+# Training hyperparameters
+hyperparameters:
+    num_train_epochs: 2
+    lr: 0.0001
+    batch_size: 128
+    gradient_accumulation_steps: 1
+    max_grad_norm: 1.0
+    warmup_steps: 200
+    warmup_ratio: 0.05
+
+    # Logging and saving
+    logging_steps: 10
+    save_steps: 25
+    eval_steps: 25
+
+# Seed for reproducibility
+SEED: 42
+
+# metric that indicates best model
+METRIC_FOR_BEST_MODEL: "eval_triplet-evaluator-dev_cosine_accuracy"
+
+# precision in training
+FP16_TRAINING: true
+
+# where to save training configs
+base_config_run_path: "./run_configs/"
