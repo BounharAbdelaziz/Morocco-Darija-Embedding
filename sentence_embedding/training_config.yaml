@@ -1,6 +1,8 @@
 # Project name and version for loggings and savings
 project_name: sentence-transformers-darija
-version: v0.1
+version: v0.2 
+    # v0.1 trained with XLM-RoBERTa-Morocco without score
+    # v0.2 trained with XLM-RoBERTa-Morocco with score
 
 # Which pretrained models to finetune
 # BASE_MODEL: google-bert/bert-base-multilingual-uncased # sentence-transformers/static-similarity-mrl-multilingual-v1
@@ -13,22 +15,23 @@ BASE_MODEL: BounharAbdelaziz/XLM-RoBERTa-Morocco
 # BASE_MODEL: atlasia/xlm-roberta-large-ft-alatlas
 
 # Dataset to use
-DATASET_PATH: atlasia/Sentence-Transformers-Triplet-Morocco-Darija
+DATASET_PATH: atlasia/Sentence-Transformers-Morocco-Darija
+BENCH_DATASET_PATH: atlasia/Morocco-Darija-Sentence-Embedding-Benchmark
 
 # Training hyperparameters
 hyperparameters:
     num_train_epochs: 2
-    lr: 0.0001
-    batch_size: 128
+    lr: 0.00002
+    batch_size: 32
     gradient_accumulation_steps: 1
     max_grad_norm: 1.0
     warmup_steps: 200
     warmup_ratio: 0.05
 
     # Logging and saving
-    logging_steps: 10
-    save_steps: 25
-    eval_steps: 25
+    logging_steps: 40
+    save_steps: 100
+    eval_steps: 100
 
 # Seed for reproducibility
 SEED: 42
