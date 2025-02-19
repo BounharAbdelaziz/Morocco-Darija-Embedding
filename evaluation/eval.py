@@ -3,16 +3,12 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 from sentence_transformers import SentenceTransformer
 from datasets import load_dataset
-import numpy as np
-from tqdm import tqdm
 import pandas as pd
 import torch
-from typing import Dict, Tuple
+from typing import Dict
 import time
 from scipy.stats import spearmanr, pearsonr
 from sklearn.metrics import mean_squared_error
-import matplotlib.pyplot as plt
-import seaborn as sns
 import json
 
 def evaluate_model(model: SentenceTransformer, dataset, batch_size: int = 32) -> Dict:
@@ -112,9 +108,6 @@ if __name__ == "__main__":
         std_val = predictions_df[column].std()
         print(f"{column:>35}: min={min_val:.4f}, max={max_val:.4f}, std={std_val:.4f}")
 
-    # Create visualizations
-    # create_visualizations(metrics_df, predictions_df)
-    
     # Save data for the React dashboard
     dashboard_data = {
         'metrics': metrics_df.to_dict('records'),
