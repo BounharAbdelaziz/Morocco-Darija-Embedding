@@ -1,0 +1,16 @@
+fasttext
+datasets
+torch
+scikit-learn
+scipy
+seaborn
+umap-learn 
+sentence_transformers 
+faiss-cpu 
+plotly 
+matplotlib 
+openai
+wandb
+numpy
+yaml
+tqdm
