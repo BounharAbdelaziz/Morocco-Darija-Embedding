@@ -1,12 +1,20 @@
 import random
 import logging
-from datasets import load_dataset, Dataset, DatasetDict
+from datasets import (
+    load_dataset,
+    Dataset,
+    DatasetDict,
+)
+from transformers import AutoTokenizer
+from sentence_transformers.models.StaticEmbedding import StaticEmbedding
+
 from sentence_transformers import (
     SentenceTransformer,
     SentenceTransformerTrainer,
     SentenceTransformerTrainingArguments,
     SentenceTransformerModelCardData,
 )
+
 from sentence_transformers.training_args import (
     BatchSamplers, 
     MultiDatasetBatchSamplers,
@@ -198,13 +206,23 @@ if __name__ == "__main__":
     )
 
     # 1. Load a model to finetune with 2. (Optional) model card data
-    model = SentenceTransformer(
-        MODEL_PATH,
-        model_card_data=SentenceTransformerModelCardData(
-            license="apache-2.0",
-            model_name="Sentence embeddings for finetuned on Moroccan Darija.",
-        ),
-    )
+    if config['STATIC_EMBEDDINGS']:
+        static_embedding = StaticEmbedding(AutoTokenizer.from_pretrained(MODEL_PATH), embedding_dim=1024)
+        model = SentenceTransformer(
+            modules=[static_embedding],
+            model_card_data=SentenceTransformerModelCardData(
+                license="apache-2.0",
+                model_name="Static Embeddings with BERT Multilingual uncased tokenizer finetuned on Moroccan Darija.",
+            ),
+        )
+    else:
+        model = SentenceTransformer(
+            MODEL_PATH,
+            model_card_data=SentenceTransformerModelCardData(
+                license="apache-2.0",
+                model_name="Sentence embeddings for finetuned on Moroccan Darija.",
+            ),
+        )
 
     # 3. Set up training & evaluation datasets - each dataset is trained with MNRL (with MRL)
     train_dataset, eval_dataset = load_train_eval_datasets(
@@ -219,7 +237,7 @@ if __name__ == "__main__":
     
     # (anchor, positive), (anchor, positive, negative)
     mnrl_loss = MultipleNegativesRankingLoss(model)
-    mnrl_loss = MatryoshkaLoss(model, mnrl_loss, matryoshka_dims=[32, 64, 128, 256, 512, 768])
+    mnrl_loss = MatryoshkaLoss(model, mnrl_loss, matryoshka_dims=[32, 64, 128, 256, 512, 1024])
     
     # (sentence_A, sentence_B) + score
     cosent_loss = CoSENTLoss(model)

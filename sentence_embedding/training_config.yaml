@@ -9,29 +9,32 @@ version: v0.2
 # BASE_MODEL: inceptionai/jais-13b
 # BASE_MODEL: google/gemma-7b
 # BASE_MODEL: deepseek-ai/DeepSeek-R1
-# BASE_MODEL: Qwen/Qwen2.5-72B
+BASE_MODEL: Qwen/Qwen2.5-72B
 # BASE_MODEL: FacebookAI/xlm-roberta-base
-BASE_MODEL: BounharAbdelaziz/XLM-RoBERTa-Morocco
+# BASE_MODEL: BounharAbdelaziz/XLM-RoBERTa-Morocco
 # BASE_MODEL: atlasia/xlm-roberta-large-ft-alatlas
 
 # Dataset to use
 DATASET_PATH: atlasia/Sentence-Transformers-Morocco-Darija
 BENCH_DATASET_PATH: atlasia/Morocco-Darija-Sentence-Embedding-Benchmark
 
+# Static or dynamic embeddings
+STATIC_EMBEDDINGS: false # true for static embeddings, false for dynamic embeddings
+
 # Training hyperparameters
 hyperparameters:
-    num_train_epochs: 2
-    lr: 0.00002
-    batch_size: 32
+    num_train_epochs: 10
+    lr: 0.05
+    batch_size: 4096
     gradient_accumulation_steps: 1
     max_grad_norm: 1.0
     warmup_steps: 200
     warmup_ratio: 0.05
 
     # Logging and saving
-    logging_steps: 40
-    save_steps: 100
-    eval_steps: 100
+    logging_steps: 5
+    save_steps: 10
+    eval_steps: 10
 
 # Seed for reproducibility
 SEED: 42
