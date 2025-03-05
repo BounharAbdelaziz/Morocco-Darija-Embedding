@@ -1,17 +1,19 @@
 # Project name and version for loggings and savings
 project_name: sentence-transformers-darija
-version: v0.2 
+version: v0.3 
     # v0.1 trained with XLM-RoBERTa-Morocco without score
     # v0.2 trained with XLM-RoBERTa-Morocco with score
+    # v0.2 trained with XLM-RoBERTa-Morocco with score (sampled 10K, seed=12), added also BounharAbdelaziz/ModernBERT-Morocco
 
 # Which pretrained models to finetune
 # BASE_MODEL: google-bert/bert-base-multilingual-uncased # sentence-transformers/static-similarity-mrl-multilingual-v1
 # BASE_MODEL: inceptionai/jais-13b
 # BASE_MODEL: google/gemma-7b
 # BASE_MODEL: deepseek-ai/DeepSeek-R1
-BASE_MODEL: Qwen/Qwen2.5-72B
+# BASE_MODEL: Qwen/Qwen2.5-72B
 # BASE_MODEL: FacebookAI/xlm-roberta-base
 # BASE_MODEL: BounharAbdelaziz/XLM-RoBERTa-Morocco
+BASE_MODEL: BounharAbdelaziz/ModernBERT-Morocco
 # BASE_MODEL: atlasia/xlm-roberta-large-ft-alatlas
 
 # Dataset to use
@@ -22,19 +24,36 @@ BENCH_DATASET_PATH: atlasia/Morocco-Darija-Sentence-Embedding-Benchmark
 STATIC_EMBEDDINGS: false # true for static embeddings, false for dynamic embeddings
 
 # Training hyperparameters
+
+# for dynamic embeddings
 hyperparameters:
-    num_train_epochs: 10
-    lr: 0.05
-    batch_size: 4096
+    num_train_epochs: 2
+    lr: 0.00002
+    batch_size: 32
     gradient_accumulation_steps: 1
     max_grad_norm: 1.0
     warmup_steps: 200
     warmup_ratio: 0.05
 
     # Logging and saving
-    logging_steps: 5
-    save_steps: 10
-    eval_steps: 10
+    logging_steps: 40
+    save_steps: 100
+    eval_steps: 100
+
+# # for static embeddings
+# hyperparameters:
+#     num_train_epochs: 10
+#     lr: 0.05
+#     batch_size: 4096
+#     gradient_accumulation_steps: 1
+#     max_grad_norm: 1.0
+#     warmup_steps: 200
+#     warmup_ratio: 0.05
+
+#     # Logging and saving
+#     logging_steps: 5
+#     save_steps: 10
+#     eval_steps: 10
 
 # Seed for reproducibility
 SEED: 42

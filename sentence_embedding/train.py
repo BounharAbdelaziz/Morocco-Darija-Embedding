@@ -81,7 +81,7 @@ def load_train_eval_datasets(train_dataset, bench_dataset="atlasia/Morocco-Darij
     
     ################################# Pair Score dataset #################################
     
-    dataset_pair_score = load_dataset(train_dataset, "pair-score", split="train") #.shuffle(seed=12).select(range(75_00))
+    dataset_pair_score = load_dataset(train_dataset, "pair-score", split="train").shuffle(seed=12).select(range(10_000))
     dataset_pair_score = dataset_pair_score.map(
         lambda x: {"sentence1": x["sentence1"], "sentence2": x["sentence2"], "score": x["score"]}, 
         remove_columns=["original_source", "translation_model", "metadata"]
@@ -207,7 +207,10 @@ if __name__ == "__main__":
 
     # 1. Load a model to finetune with 2. (Optional) model card data
     if config['STATIC_EMBEDDINGS']:
-        static_embedding = StaticEmbedding(AutoTokenizer.from_pretrained(MODEL_PATH), embedding_dim=1024)
+        static_embedding = StaticEmbedding(
+            AutoTokenizer.from_pretrained(MODEL_PATH), 
+            embedding_dim=1024
+        )
         model = SentenceTransformer(
             modules=[static_embedding],
             model_card_data=SentenceTransformerModelCardData(
@@ -237,7 +240,7 @@ if __name__ == "__main__":
     
     # (anchor, positive), (anchor, positive, negative)
     mnrl_loss = MultipleNegativesRankingLoss(model)
-    mnrl_loss = MatryoshkaLoss(model, mnrl_loss, matryoshka_dims=[32, 64, 128, 256, 512, 1024])
+    mnrl_loss = MatryoshkaLoss(model, mnrl_loss, matryoshka_dims=[32, 64, 128, 256, 512, 768])
     
     # (sentence_A, sentence_B) + score
     cosent_loss = CoSENTLoss(model)
