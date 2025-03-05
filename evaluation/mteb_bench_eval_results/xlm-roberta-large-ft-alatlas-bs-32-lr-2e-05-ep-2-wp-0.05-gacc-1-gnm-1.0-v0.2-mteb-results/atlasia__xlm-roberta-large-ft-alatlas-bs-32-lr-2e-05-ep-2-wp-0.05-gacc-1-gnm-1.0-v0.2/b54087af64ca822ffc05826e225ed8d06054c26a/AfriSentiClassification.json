@@ -1,0 +1,73 @@
+{
+  "dataset_revision": "b52e930385cf5ed7f063072c3f7bd17b599a16cf",
+  "task_name": "AfriSentiClassification",
+  "mteb_version": "1.34.22",
+  "scores": {
+    "test": [
+      {
+        "accuracy": 0.445703,
+        "f1": 0.436519,
+        "f1_weighted": 0.442553,
+        "scores_per_experiment": [
+          {
+            "accuracy": 0.414062,
+            "f1": 0.403139,
+            "f1_weighted": 0.407462
+          },
+          {
+            "accuracy": 0.409668,
+            "f1": 0.406718,
+            "f1_weighted": 0.415586
+          },
+          {
+            "accuracy": 0.399902,
+            "f1": 0.390292,
+            "f1_weighted": 0.399679
+          },
+          {
+            "accuracy": 0.403809,
+            "f1": 0.390532,
+            "f1_weighted": 0.399706
+          },
+          {
+            "accuracy": 0.531738,
+            "f1": 0.529547,
+            "f1_weighted": 0.534058
+          },
+          {
+            "accuracy": 0.473633,
+            "f1": 0.463746,
+            "f1_weighted": 0.472275
+          },
+          {
+            "accuracy": 0.480469,
+            "f1": 0.471615,
+            "f1_weighted": 0.477599
+          },
+          {
+            "accuracy": 0.401855,
+            "f1": 0.38582,
+            "f1_weighted": 0.381059
+          },
+          {
+            "accuracy": 0.45166,
+            "f1": 0.440454,
+            "f1_weighted": 0.450713
+          },
+          {
+            "accuracy": 0.490234,
+            "f1": 0.483325,
+            "f1_weighted": 0.487395
+          }
+        ],
+        "main_score": 0.445703,
+        "hf_subset": "ary",
+        "languages": [
+          "ary-Arab"
+        ]
+      }
+    ]
+  },
+  "evaluation_time": 16.956262588500977,
+  "kg_co2_emissions": null
+}
