@@ -25,10 +25,15 @@ TASKS=[
 LANGUAGES=["ary"]
 
 MODELS_NAMES=[
-  "BounharAbdelaziz/Morocco-Darija-Sentence-Embedding",
-  "BounharAbdelaziz/Morocco-Darija-Static-Sentence-Embedding",
-  "intfloat/multilingual-e5-large",
-  "BAAI/bge-m3"
+  # "atlasia/Qwen2.5-72B-bs-4096-lr-0.05-ep-10-wp-0.05-gacc-1-gnm-1.0-v0.2",
+  # "atlasia/XLM-RoBERTa-Morocco-bs-32-lr-2e-05-ep-2-wp-0.05-gacc-1-gnm-1.0-v0.2",
+  # "atlasia/xlm-roberta-large-ft-alatlas-bs-32-lr-2e-05-ep-2-wp-0.05-gacc-1-gnm-1.0-v0.2",
+  "BounharAbdelaziz/Morocco-Darija-Sentence-Embedding-v0.2",
+  "BounharAbdelaziz/ModernBERT-Morocco-Sentence-Embeddings-v0.2-bs-32-lr-2e-05-ep-2-wp-0.05-gacc-1-gnm-1.0-v0.3",
+  # "BounharAbdelaziz/Morocco-Darija-Sentence-Embedding-v0.1",
+  # "BounharAbdelaziz/Morocco-Darija-Static-Sentence-Embedding",
+  # "intfloat/multilingual-e5-large",
+  # "BAAI/bge-m3"
 ]
 
 batch_size = 512
